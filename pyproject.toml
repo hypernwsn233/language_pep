@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pep-sharp-lang"
+version = "0.1.0"
+description = "pep# language runtime and CLI"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "discord.py>=2.4.0"
+]
+authors = [
+    {name = "pep# Team"}
+]
+license = {text = "MIT"}
+keywords = ["language", "dataflow", "automation", "pipeline"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent"
+]
+
+[project.scripts]
+pep = "pep_lang.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["pep_lang*"]
