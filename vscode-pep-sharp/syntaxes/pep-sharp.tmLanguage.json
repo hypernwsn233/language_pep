@@ -1,0 +1,142 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "pep#",
+  "scopeName": "source.pep",
+  "fileTypes": ["pep", "pepc"],
+  "patterns": [
+    { "include": "#comment" },
+    { "include": "#string-double" },
+    { "include": "#string-single" },
+    { "include": "#function-definition" },
+    { "include": "#type-definition" },
+    { "include": "#number" },
+    { "include": "#constant-lang" },
+    { "include": "#source-builtin" },
+    { "include": "#pipeline-stage" },
+    { "include": "#keyword-control" },
+    { "include": "#keyword-declaration" },
+    { "include": "#type-primitive" },
+    { "include": "#operator-pipeline" },
+    { "include": "#operator-assign" },
+    { "include": "#operator-comparison" },
+    { "include": "#operator-logical" },
+    { "include": "#operator-error" },
+    { "include": "#variable-define" }
+  ],
+  "repository": {
+
+    "comment": {
+      "name": "comment.line.number-sign.pep",
+      "match": "#.*$"
+    },
+
+    "string-double": {
+      "name": "string.quoted.double.pep",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        { "name": "constant.character.escape.pep",      "match": "\\\\." },
+        { "name": "variable.other.interpolated.pep",    "match": "\\{[^}]+\\}" }
+      ]
+    },
+
+    "string-single": {
+      "name": "string.quoted.single.pep",
+      "begin": "'",
+      "end": "'",
+      "patterns": [
+        { "name": "constant.character.escape.pep", "match": "\\\\." }
+      ]
+    },
+
+    "function-definition": {
+      "comment": "fn name( ...",
+      "match": "\\b(fn)\\s+([a-zA-Z_][a-zA-Z0-9_]*)\\s*\\(",
+      "captures": {
+        "1": { "name": "keyword.declaration.function.pep" },
+        "2": { "name": "entity.name.function.pep" }
+      }
+    },
+
+    "type-definition": {
+      "comment": "type Name:",
+      "match": "\\b(type)\\s+([A-Z][a-zA-Z0-9_]*)",
+      "captures": {
+        "1": { "name": "keyword.declaration.type.pep" },
+        "2": { "name": "entity.name.type.pep" }
+      }
+    },
+
+    "number": {
+      "name": "constant.numeric.pep",
+      "match": "\\b-?\\d+(\\.\\d+)?\\b"
+    },
+
+    "constant-lang": {
+      "name": "constant.language.pep",
+      "match": "\\b(true|false|null|ok|err)\\b"
+    },
+
+    "source-builtin": {
+      "comment": "Data source constructors: json, csv, file, http ...",
+      "name": "support.class.source.pep",
+      "match": "(?<![a-zA-Z0-9_])(json|csv|file|files|http|stream|parquet|kafka)(?=\\s)"
+    },
+
+    "pipeline-stage": {
+      "comment": "Stage keywords that appear after -> in pipelines",
+      "name": "support.function.builtin.pipeline.pep",
+      "match": "\\b(filter|flatmap|reduce|collect|count|take|drop|skip|save|store|parse|group|sort|join|merge|parallel|batch|buffer|step|window|branch|sink|validate|schema|compress|upload|resize|flatten|distinct|limit|offset|sample)\\b"
+    },
+
+    "keyword-control": {
+      "name": "keyword.control.pep",
+      "match": "\\b(if|elif|else|for|in|repeat|while|return|match|await|on|after|map)\\b"
+    },
+
+    "keyword-declaration": {
+      "name": "keyword.other.declaration.pep",
+      "match": "\\b(use|mut|set|task|server|route|watch|trace|explain|permit|taskgroup|print|signal)\\b"
+    },
+
+    "type-primitive": {
+      "name": "entity.name.type.annotation.pep",
+      "match": "\\b(number|string|boolean|list|map|pipeline|error|result|option|time|duration|bytes|any|record)\\b"
+    },
+
+    "operator-pipeline": {
+      "name": "keyword.operator.pipeline.pep",
+      "match": "->"
+    },
+
+    "operator-assign": {
+      "patterns": [
+        { "name": "keyword.operator.assignment.pep",    "match": ":=" },
+        { "name": "keyword.operator.arrow-right.pep",   "match": "=>" }
+      ]
+    },
+
+    "operator-comparison": {
+      "name": "keyword.operator.comparison.pep",
+      "match": "==|!=|>=|<=|>|<"
+    },
+
+    "operator-logical": {
+      "name": "keyword.operator.logical.pep",
+      "match": "\\b(and|or|not)\\b"
+    },
+
+    "operator-error": {
+      "name": "keyword.operator.error-propagation.pep",
+      "match": "\\?"
+    },
+
+    "variable-define": {
+      "comment": "name :=  — highlight defined name",
+      "match": "\\b([a-z_][a-zA-Z0-9_]*)\\s*:=",
+      "captures": {
+        "1": { "name": "variable.other.definition.pep" }
+      }
+    }
+  }
+}
