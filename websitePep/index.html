@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pep# | Pipeline First Language</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Sora:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="noise"></div>
+  <div class="aurora"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">pep#</span>
+      <span class="brand-sub">language</span>
+    </div>
+    <nav class="nav">
+      <a href="#visao">Visao</a>
+      <a href="#motor">Motor</a>
+      <a href="#ecossistema">Ecossistema</a>
+    </nav>
+    <button class="pill">Instalar Beta</button>
+  </header>
+
+  <main>
+    <section class="hero" id="visao">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">Pipeline First • Auto Parallel • Distributed Ready</p>
+        <h1>
+          A linguagem que transforma scripts simples em
+          <span>sistemas distribuídos</span>
+        </h1>
+        <p class="lead">
+          pep# foi criada para automação de dados moderna: escreva menos código intermediário,
+          ganhe observabilidade nativa e deixe o runtime escalar de laptop para cluster.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-main" href="#ecossistema">Entrar no ecossistema</a>
+          <a class="btn btn-ghost" href="#motor">Ver arquitetura</a>
+        </div>
+      </div>
+
+      <div class="hero-scene reveal" id="scene">
+        <div class="core-disc"></div>
+        <div class="ring ring-a"></div>
+        <div class="ring ring-b"></div>
+        <div class="ring ring-c"></div>
+
+        <article class="float-card card-1">
+          <h3>Pipeline DAG</h3>
+          <p>Fusion, checkpoint, auto partition e backpressure inteligentes.</p>
+        </article>
+
+        <article class="float-card card-2">
+          <h3>Observability Native</h3>
+          <p>watch, trace e explain em tempo real por estágio.</p>
+        </article>
+
+        <article class="float-card card-3">
+          <h3>One Code, Any Scale</h3>
+          <p>Local, servidor, cloud e cluster sem reescrever o script.</p>
+        </article>
+
+        <div class="pipeline-lane lane-1"></div>
+        <div class="pipeline-lane lane-2"></div>
+        <div class="pipeline-lane lane-3"></div>
+      </div>
+    </section>
+
+    <section class="matrix" id="motor">
+      <div class="grid-title reveal">
+        <p class="eyebrow">Engine Core</p>
+        <h2>Arquitetura brutal para dados de produção</h2>
+      </div>
+      <div class="feature-grid">
+        <article class="feature reveal">
+          <span class="tag">Runtime</span>
+          <h3>Scheduler Quântico de Tasks</h3>
+          <p>Orquestra task groups, comandos, jobs e pipelines com concorrência declarativa.</p>
+        </article>
+
+        <article class="feature reveal">
+          <span class="tag">Pipeline</span>
+          <h3>Fluxo Vetorizado + Parallel Max</h3>
+          <p>Map/filter paralelos, cache de expressão e operadores fusionados por plano físico.</p>
+        </article>
+
+        <article class="feature reveal">
+          <span class="tag">Compiler</span>
+          <h3>Plan + Bytecode Artifact</h3>
+          <p>Gera plano de execução e artefato .pepc para build previsível em CI/CD.</p>
+        </article>
+
+        <article class="feature reveal">
+          <span class="tag">Network</span>
+          <h3>Discord & Server Native</h3>
+          <p>Bibliotecas e servidor embutido para bots, comandos, embeds, APIs e automações.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="showcase" id="ecossistema">
+      <div class="terminal reveal">
+        <div class="terminal-head">
+          <span></span><span></span><span></span>
+          <p>pep# / release-candidate</p>
+        </div>
+        <pre><code>use discord
+
+bot := discord.bot("TOKEN", "!")
+discord.command("ping", "pong from pep#")
+discord.command_embed("status", "pep#", "online", 0x00D4A5)
+
+data := json "sales.json"
+result := data -> parallel max 12 -> filter amount > 100 -> map amount -> collect
+
+watch result
+discord.start()</code></pre>
+      </div>
+
+      <aside class="kpis reveal">
+        <div class="kpi"><strong>12x</strong><span>pipeline boost com parallel max</span></div>
+        <div class="kpi"><strong>0</strong><span>mudanças de código para migrar local → cluster</span></div>
+        <div class="kpi"><strong>1</strong><span>linguagem para automação, dados e backend leve</span></div>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>pep# language • Built for modern data automation</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
