@@ -1,0 +1,100 @@
+{
+  "name": "vscode-pep-sharp",
+  "displayName": "pep# Language Support",
+  "description": "Syntax highlighting, autocomplete, snippets and code intelligence for pep#.",
+  "version": "0.1.0-beta",
+  "publisher": "pep-sharp",
+  "icon": "icons/logo.png",
+  "license": "MIT",
+  "homepage": "https://github.com/pep-sharp/pep-lang",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pep-sharp/pep-lang"
+  },
+  "bugs": {
+    "url": "https://github.com/pep-sharp/pep-lang/issues"
+  },
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets",
+    "Formatters"
+  ],
+  "keywords": [
+    "pep",
+    "pep-sharp",
+    "pipeline",
+    "dataflow",
+    "automation"
+  ],
+  "activationEvents": [
+    "onLanguage:pep"
+  ],
+  "main": "./src/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "pep",
+        "aliases": ["pep#", "pep-sharp", "pep"],
+        "extensions": [".pep", ".pepc"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "pep",
+        "scopeName": "source.pep",
+        "path": "./syntaxes/pep-sharp.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "pep",
+        "path": "./snippets/pep.json"
+      }
+    ],
+    "themes": [],
+    "commands": [
+      {
+        "command": "pep.runFile",
+        "title": "pep#: Run File",
+        "icon": "$(play)"
+      },
+      {
+        "command": "pep.watchPipeline",
+        "title": "pep#: Watch Pipeline"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "when": "resourceExtname == .pep",
+          "command": "pep.runFile",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "pep#",
+      "properties": {
+        "pep.executablePath": {
+          "type": "string",
+          "default": "pep",
+          "description": "Path to the pep CLI executable."
+        },
+        "pep.enableLinting": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable real-time syntax checking."
+        },
+        "pep.showPipelineMetrics": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show pipeline metrics inline after run."
+        }
+      }
+    }
+  }
+}
