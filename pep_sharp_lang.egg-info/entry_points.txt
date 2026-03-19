@@ -1,0 +1,2 @@
+[console_scripts]
+pep = pep_lang.cli:main
