@@ -1,0 +1,212 @@
+{
+  "Variable": {
+    "prefix": ":=",
+    "body": ["${1:name} := ${0}"],
+    "description": "Declare an immutable variable"
+  },
+
+  "Mutable variable": {
+    "prefix": "mut",
+    "body": ["mut ${1:name} := ${0}"],
+    "description": "Declare a mutable variable"
+  },
+
+  "Function": {
+    "prefix": "fn",
+    "body": [
+      "fn ${1:name}(${2:params}):",
+      "    ${0:return}"
+    ],
+    "description": "Declare a function"
+  },
+
+  "Function inline": {
+    "prefix": "fni",
+    "body": ["fn ${1:name}(${2:params}) => ${0}"],
+    "description": "Declare a single-line function"
+  },
+
+  "If": {
+    "prefix": "if",
+    "body": [
+      "if ${1:condition}:",
+      "    ${0}"
+    ],
+    "description": "Conditional statement"
+  },
+
+  "If-else": {
+    "prefix": "ife",
+    "body": [
+      "if ${1:condition}:",
+      "    ${2}",
+      "else:",
+      "    ${0}"
+    ],
+    "description": "Conditional with else branch"
+  },
+
+  "For loop": {
+    "prefix": "for",
+    "body": [
+      "for ${1:item} in ${2:list}:",
+      "    ${0}"
+    ],
+    "description": "For loop over a collection"
+  },
+
+  "Repeat": {
+    "prefix": "repeat",
+    "body": [
+      "repeat ${1:10}:",
+      "    ${0}"
+    ],
+    "description": "Repeat a block N times"
+  },
+
+  "Match": {
+    "prefix": "match",
+    "body": [
+      "match ${1:expr}:",
+      "    ${2:pattern} => ${3:value}",
+      "    _ => ${0}"
+    ],
+    "description": "Pattern matching"
+  },
+
+  "Type declaration": {
+    "prefix": "type",
+    "body": [
+      "type ${1:Name}:",
+      "    ${2:field}: ${3:string}",
+      "    ${0}"
+    ],
+    "description": "Declare a data type / schema"
+  },
+
+  "Pipeline – JSON source": {
+    "prefix": "pjson",
+    "body": [
+      "${1:data} :=",
+      "    json \"${2:data.json}\"",
+      "    -> filter ${3:condition}",
+      "    -> map ${4:field}",
+      "    -> collect"
+    ],
+    "description": "Pipeline reading from JSON"
+  },
+
+  "Pipeline – CSV source": {
+    "prefix": "pcsv",
+    "body": [
+      "${1:data} :=",
+      "    csv \"${2:data.csv}\"",
+      "    -> filter ${3:condition}",
+      "    -> collect"
+    ],
+    "description": "Pipeline reading from CSV"
+  },
+
+  "Pipeline chain": {
+    "prefix": "pipe",
+    "body": [
+      "${1:result} := ${2:source} -> ${3:filter condition} -> ${4:map expr} -> collect"
+    ],
+    "description": "Inline pipeline chain"
+  },
+
+  "Task": {
+    "prefix": "task",
+    "body": [
+      "task ${1:name}:",
+      "    ${0}"
+    ],
+    "description": "Declare an async task"
+  },
+
+  "Task group": {
+    "prefix": "taskgroup",
+    "body": [
+      "taskgroup ${1:daily}:",
+      "    task ${2:extract}:",
+      "        ${3}",
+      "",
+      "    task ${4:transform}:",
+      "        ${0}"
+    ],
+    "description": "Declare a group of ordered tasks"
+  },
+
+  "Await": {
+    "prefix": "await",
+    "body": ["await ${1:task1}, ${0:task2}"],
+    "description": "Wait for named tasks"
+  },
+
+  "Server": {
+    "prefix": "server",
+    "body": [
+      "server ${1:8080}:",
+      "    route \"${2:/}\":",
+      "        return ${0:\"Hello\"}"
+    ],
+    "description": "Embedded HTTP server with a route"
+  },
+
+  "Route": {
+    "prefix": "route",
+    "body": [
+      "route \"${1:/path}\":",
+      "    return ${0}"
+    ],
+    "description": "HTTP route inside a server block"
+  },
+
+  "Use module": {
+    "prefix": "use",
+    "body": ["use ${0:module}"],
+    "description": "Import a module"
+  },
+
+  "Watch pipeline": {
+    "prefix": "watch",
+    "body": ["watch ${1:pipeline}"],
+    "description": "Display pipeline execution metrics"
+  },
+
+  "Error handling": {
+    "prefix": "?err",
+    "body": [
+      "${1:value} := ${2:operation} ?",
+      "",
+      "if ${1:value} is error:",
+      "    print ${1:value}.message",
+      "    ${0}"
+    ],
+    "description": "Fallible operation with error check"
+  },
+
+  "Filter": {
+    "prefix": "filter",
+    "body": ["filter ${0:condition}"],
+    "description": "Pipeline filter stage"
+  },
+
+  "Map": {
+    "prefix": "map",
+    "body": ["map ${0:expr}"],
+    "description": "Pipeline map stage"
+  },
+
+  "Parallel": {
+    "prefix": "parallel",
+    "body": ["parallel max ${0:4}"],
+    "description": "Pipeline parallelism hint"
+  },
+
+  "Save to file": {
+    "prefix": "save",
+    "body": ["save \"${0:output.json}\""],
+    "description": "Pipeline save stage"
+  }
+}
